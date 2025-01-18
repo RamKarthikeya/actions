@@ -1,0 +1,35 @@
+name: Daily Python Script Runner
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # Runs every day at 8:00 AM UTC
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      # Step 3: Install dependencies (if any)
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          # Add any required dependencies here
+
+      # Step 4: Run the Python script
+      - name: Run the sample script
+        run: |
+          python sample_script.py
+
+      # Step 5: Display output file contents (for debugging)
+      - name: Show output
+        run: cat output.txt
