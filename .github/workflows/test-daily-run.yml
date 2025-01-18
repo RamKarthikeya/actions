@@ -2,7 +2,7 @@ name: Daily Python Script Runner
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Runs every day at 8:00 AM UTC
+    - cron: "*/5 * * * *" # Runs every 5 minutes (for testing purposes)
 
 jobs:
   run-script:
@@ -25,11 +25,22 @@ jobs:
           pip install --upgrade pip
           # Add any required dependencies here
 
-      # Step 4: Run the Python script
-      - name: Run the sample script
-        run: |
-          python sample_script.py
+      # Step 4: Print the current working directory
+      - name: Print working directory
+        run: pwd
 
-      # Step 5: Display output file contents (for debugging)
+      # Step 5: List files before running the script
+      - name: List files before script
+        run: ls -la
+
+      # Step 6: Run the Python script
+      - name: Run the sample script
+        run: python sample_script.py
+
+      # Step 7: List files after running the script
+      - name: List files after script
+        run: ls -la
+
+      # Step 8: Display output file contents (for debugging)
       - name: Show output
-        run: cat output.txt
+        run: cat output.txt || echo "output.txt not found"
