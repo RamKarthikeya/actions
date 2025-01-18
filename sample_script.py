@@ -1,9 +1,11 @@
-# sample_script.py
-
+import os
 from datetime import datetime
 
-# Print the current date and time to a file
-with open("output.txt", "a") as file:
-    file.write(f"Script ran at: {datetime.now()}\n")
+# Debug: Print the current working directory
+print(f"Current working directory: {os.getcwd()}")
 
-print("Script executed successfully!")
+# Create or overwrite output.txt
+with open("output.txt", "w") as f:
+    f.write(f"Script ran at: {datetime.now()}\n")
+
+print("Output file created successfully.")
